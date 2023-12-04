@@ -2,7 +2,7 @@ POST http://localhost:8000/order HTTP/1.1
 
 
 {
-    "id":"acdesfsa",
+    "id":"teste123",
     "price": 130.5,
     "tax": 0.5
 }
