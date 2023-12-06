@@ -27,7 +27,7 @@ func NewWebOrderHandler(
 	}
 }
 
-func (h *WebOrderHandler) Create(w http.ResponseWriter, r *http.Request) {
+func (h *WebOrderHandler) Orders(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 
 		var dto usecase.OrderInputDTO
