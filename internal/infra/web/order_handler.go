@@ -49,12 +49,9 @@ func (h *WebOrderHandler) Orders(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	} else if r.Method == "GET" {
-		dtoOrders, err := h.OrderRepository.GetOrders()
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		err = json.NewEncoder(w).Encode(dtoOrders)
+		listOrders := usecase.NewListOrderUseCase(h.OrderRepository, h.OrderCreatedEvent, h.EventDispatcher)
+		dto, err := listOrders.Execute()
+		err = json.NewEncoder(w).Encode(dto)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

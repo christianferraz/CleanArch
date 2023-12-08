@@ -22,16 +22,17 @@ func NewListOrderUseCase(
 	OrderRepository entity.OrderRepositoryInterface,
 	OrderCreated events.EventInterface,
 	EventDispatcher events.EventDispatcherInterface,
-) *CreateOrderUseCase {
-	return &CreateOrderUseCase{
+) *ListOrderUseCase {
+	return &ListOrderUseCase{
 		OrderRepository: OrderRepository,
-		OrderCreated:    OrderCreated,
+		OrderListed:     OrderCreated,
 		EventDispatcher: EventDispatcher,
 	}
 }
 
 func (n *ListOrderUseCase) Execute() ([]OrderOutputDTO, error) {
 	orders, err := n.OrderRepository.GetOrders()
+
 	if err != nil {
 		return []OrderOutputDTO{}, err
 	}
