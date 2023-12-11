@@ -32,7 +32,7 @@ func (r *mutationResolver) CreateOrder(ctx context.Context, input *model.OrderIn
 
 // GetOrders is the resolver for the getOrders field.
 func (r *queryResolver) GetOrders(ctx context.Context) ([]*model.Order, error) {
-	orders, err := r.CreateOrderUseCase.OrderRepository.GetOrders()
+	orders, err := r.GetOrderUseCase.Execute()
 	if err != nil {
 		return nil, err
 	}
